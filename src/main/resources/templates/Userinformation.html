@@ -1,39 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>User Information</title>
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Edit</title>
 </head>
+
 <body>
+    <h1>User Information</h1>
+    <form th:action="@{/updateuser/{id}(id=${user.id})}" th:object="${update}"  method="post">
+        <label for="first name" style="display: block; margin-bottom: 5px;">fname:</label>
+        <input type="text" th:value="${user.fname}" id="fname" name="fname" style="width: 100%; padding: 5px; border: 1px solid #ccc;">
 
-<div class="container mx-auto px-4 py-2">
+        <label for="lastname"  style="display: block; margin-bottom: 5px;">lastname:</label>
+        <input type="text" th:value="${user.lastname}" id="lastname" name="lastname" style="width: 100%; padding: 5px; border: 1px solid #ccc;">
 
-  <h1 class="text-xl font-bold mb-4">User Information</h1>
+        <label for="Phone Number" style="display: block; margin-bottom: 5px;">Phone Number:</label>
+        <input type="number" th:value="${user.phone}" id="phone" name="phone" style="width: 100%; padding: 5px; border: 1px solid #ccc;">
 
-
-
-  <table class="table-auto mt-4 w-full border border-collapse">
-    <thead>
-      <tr class="bg-gray-100 text-left text-sm font-medium">
-        <th class="px-4 py-2">ID</th>
-        <th class="px-4 py-2">First Name</th>
-        <th class="px-4 py-2">Last Name</th>
-        <th class="px-4 py-2">Phone</th>
-        
-      </tr>
-      <tr>
-        <td th:text="${user.id}" class="px-4 py-2"></td>  
-        <td th:text="${user.fname}" class="px-4 py-2"></td>
-        <td th:text="${user.lastname}" class="px-4 py-2"></td>
-        <td th:text="${user.phone}" class="px-4 py-2"></td>
-
-      </tr>
-    </thead>
-    <tbody>
-      </tbody>
-  </table>
-
-</div>
-
+        <button type="submit"
+            style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;">Update User
+            User</button>
+    </form>
 </body>
-</html>
+
+</html>	

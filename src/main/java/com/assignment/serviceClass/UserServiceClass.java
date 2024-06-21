@@ -40,6 +40,11 @@ public class UserServiceClass implements UserService {
 	@Override
 	public UserDto updateUser(UserDto user,Integer id) {
 		User getUser=this.userRepo.findById(id).orElseThrow(()->new NotFound(false));
+		
+		if(!getUser.isEnabled()) {
+			return null;
+		}
+		
 		getUser.setFname(user.getFname());
 		getUser.setLastname(user.getLastname());
 		getUser.setPhone(user.getPhone());

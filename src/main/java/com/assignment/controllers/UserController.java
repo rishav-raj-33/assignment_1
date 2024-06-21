@@ -47,8 +47,20 @@ public class UserController {
    public String getUser(@PathVariable int id,Model model) {
 	   UserDto userDto=this.serviceClass.getUser(id);
 	   model.addAttribute("user",userDto);
+		UserDto updateUser=new UserDto();
+	   model.addAttribute("update",updateUser);
 	   return "userinformation";
    }
+   
+   @PostMapping("/updateuser/{id}")
+   public String ipdateUser(@PathVariable int id,@ModelAttribute("update") UserDto userDto) {
+	   this.serviceClass.updateUser(userDto, id);
+	   
+	   return "redirect:/list";
+   }
+   
+   
+   
 	
 	
 }
