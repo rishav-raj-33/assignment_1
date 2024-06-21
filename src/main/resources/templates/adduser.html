@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Form</title>
+</head>
+
+<body>
+    <h1>Add User</h1>
+    <form action="/adduser" th:object="${user}" method="post">
+        <label for="first name" style="display: block; margin-bottom: 5px;">fname:</label>
+        <input type="text" th:field="*{fname}" id="fname" name="fname" style="width: 100%; padding: 5px; border: 1px solid #ccc;">
+
+        <label for="lastname"  style="display: block; margin-bottom: 5px;">lastname:</label>
+        <input type="text" th:field="*{lastname}" id="lastname" name="lastname" style="width: 100%; padding: 5px; border: 1px solid #ccc;">
+
+        <label for="Phone Number" style="display: block; margin-bottom: 5px;">Phone Number:</label>
+        <input type="number" th:field="*{phone}" id="phone" name="phone" style="width: 100%; padding: 5px; border: 1px solid #ccc;">
+
+        <button type="submit"
+            style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;">Add
+            User</button>
+    </form>
+</body>
+
+</html>	
