@@ -8,20 +8,35 @@
 
 <body>
     <h1>User Information</h1>
-    <form th:action="@{/updateuser/{id}(id=${user.id})}" th:object="${update}"  method="post">
+    <form id="myform" th:action="@{/updateuser/{id}(id=${user.id})}" th:object="${update}"  method="post">
         <label for="first name" style="display: block; margin-bottom: 5px;">fname:</label>
-        <input type="text" th:value="${user.fname}" id="fname" name="fname" style="width: 100%; padding: 5px; border: 1px solid #ccc;">
+        <input type="text" th:value="${user.fname}" id="fname"  name="fname" style="width: 100%; padding: 5px; border: 1px solid #ccc;">
 
         <label for="lastname"  style="display: block; margin-bottom: 5px;">lastname:</label>
         <input type="text" th:value="${user.lastname}" id="lastname" name="lastname" style="width: 100%; padding: 5px; border: 1px solid #ccc;">
 
         <label for="Phone Number" style="display: block; margin-bottom: 5px;">Phone Number:</label>
-        <input type="number" th:value="${user.phone}" id="phone" name="phone" style="width: 100%; padding: 5px; border: 1px solid #ccc;">
+        <input type="number" th:value="${user.phone}" id="phone" name="phone"  style="width: 100%; padding: 5px; border: 1px solid #ccc;">
 
         <button type="submit"
             style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;">Update User
             User</button>
     </form>
 </body>
+
+<script>
+	const form=document.getElementById('myForm');
+	form.addEventListener('submit', function(event) {
+		
+		const enable="${user.enabled}";
+		
+		if(!enable)
+  event.preventDefault();
+
+});
+
+	
+	
+</script>
 
 </html>	

@@ -2,13 +2,16 @@ package com.assignment.controllers;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.assignment.payloads.UserDto;
 import com.assignment.serviceClass.UserServiceClass;
@@ -53,10 +56,17 @@ public class UserController {
    }
    
    @PostMapping("/updateuser/{id}")
-   public String ipdateUser(@PathVariable int id,@ModelAttribute("update") UserDto userDto) {
+   public String updateUser(@PathVariable int id,@ModelAttribute("update") UserDto userDto) {
 	   this.serviceClass.updateUser(userDto, id);
 	   
 	   return "redirect:/list";
+   }
+   
+   
+   @PostMapping("/updatestatus/{id}")
+   public ResponseEntity<Void> updateStatus(@PathVariable String id,@RequestBody boolean status) {
+	   this.serviceClass.statusUpdate(status, Integer.parseInt(id));
+	   return ResponseEntity.ok().build();
    }
    
    

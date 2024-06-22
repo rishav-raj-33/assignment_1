@@ -13,5 +13,7 @@ public interface UserService {
 	
 	UserDto getUser(Integer id);
 	
+	void statusUpdate(boolean status,Integer id);
+	
 
 }

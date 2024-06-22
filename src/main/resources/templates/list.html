@@ -25,7 +25,8 @@
 			  <a th:href="@{/getuser/{id}(id=${user.id})}">
 			  <span th:text= ${user.fname}></span>
 			  </a>
-			  <input type="checkbox" id="checkbox-user-{{user.id}}" name="my-checkbox" value="option2" th:checked="${user.enabled ? 'checked' : ''}">
+			  <input type="checkbox" id="checkbox-user-{{user.id}}" name="my-checkbox" data-user-id="${user.id}" th:value="${user.id}"  th:checked="${user.enabled}">
+			  
   <label for="checkbox-2">Enable/Disable</label>
   
                   
@@ -36,16 +37,40 @@
 		  </li>
 		  
          
-      </ol>         
-
-  
-
-  
-  
-
-
+      </ol>        
 </div>
+<script>
+	
+	const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+checkboxes.forEach(checkbox => {
+  checkbox.addEventListener('change', function() {
+    const id = this.value;
+      const isChecked = this.checked;
+      
+    callApi(id,isChecked);
+  });
+});
 
+function callApi(userId,isChecked) {
+	const updateUrl = '/updatestatus/'+userId; 
+	console.log(isChecked);
+	console.log(updateUrl);
+	  fetch(updateUrl, {
+    method: 'POST', // Use POST for updates
+    headers: { 'Content-Type': 'application/json' }, 
+    body: JSON.stringify(isChecked) 
+  })
+  .then(response => response.status) 
+  .then(data => {
+    
+  })
+  .catch(error => {
+    console.error('Error updating database:', error);
+  });
+}
+	
+	
+</script>
 
 
 </body>

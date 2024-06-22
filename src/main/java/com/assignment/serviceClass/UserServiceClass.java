@@ -59,4 +59,13 @@ public class UserServiceClass implements UserService {
 		return this.mapper.map(this.userRepo.save(getUser), UserDto.class);
 	}
 
+	@Override
+	public void statusUpdate(boolean status,Integer id) {
+		User getUser=this.userRepo.findById(id).orElseThrow(()->new NotFound(false));
+		getUser.setEnabled(status);
+		this.userRepo.save(getUser);
+		
+		 return;
+	}
+
 }
