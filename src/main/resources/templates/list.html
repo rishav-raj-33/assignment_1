@@ -25,7 +25,7 @@
 			  <a th:href="@{/getuser/{id}(id=${user.id})}">
 			  <span th:text= ${user.fname}></span>
 			  </a>
-			  <input type="checkbox" id="checkbox-user-{{user.id}}" name="my-checkbox" data-user-id="${user.id}" th:value="${user.id}"  th:checked="${user.enabled}">
+			  <input type="checkbox" id="checkbox-user-{{user.id}}" name="my-checkbox" data-user-id="${user.id}" th:value="${user.id}"  th:checked="${user.enabled?'checked':'''}">
 			  
   <label for="checkbox-2">Enable/Disable</label>
   
